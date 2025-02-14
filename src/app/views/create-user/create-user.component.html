@@ -1,0 +1,28 @@
+<section id="create-user">
+    <div class="container">
+        <div class="row">
+            <h1>Create a new user</h1>
+            <p>Please fill the form with your user info</p>
+
+            <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+                <div class="field">
+                    <label for="name">Fullname</label>
+                    <input name="name" formControlName="name" type="text" placeholder="Type here your full name">
+                    <p class="error-message">{{ getErrors(userForm.controls["name"]) }}</p>
+                </div>
+                <div class="field">
+                    <label for="email">Email</label>
+                    <input name="email" formControlName="email" type="text" placeholder="Type here your best e-mail address">
+                    <p class="error-message">{{ getErrors(userForm.controls["email"]) }}</p>
+                </div>
+                <div class="field">
+                    <label for="password">Password</label>
+                    <input name="password" formControlName="password" type="password" placeholder="Type here a strong password">
+                    <p class="error-message">{{ getErrors(userForm.controls["password"]) }}</p>
+                </div>
+
+                <button type="submit" [disabled]="!userForm.valid">Create</button>
+            </form>
+        </div>
+    </div>
+</section>
