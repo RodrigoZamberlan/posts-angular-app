@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+import { IFormFieldInputs } from '../../shared/models/form-field.interface';
 
 @Component({
   selector: 'app-form-field',
@@ -10,29 +11,24 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
 })
 
 export class FormFieldComponent {
-  @Input() label: string = "";
-  @Input() name: string = "";
-  @Input() type: string = "";
-  @Input() placeholder: string = "";
-  @Input() required: boolean = false;
-  @Input() control!: FormControl;
+  @Input() formFieldInputs!: IFormFieldInputs;
 
   get errorMessage(): string | null {
-    if (this.control.touched && this.control.errors && !this.control.valid) {
-      if (this.control.hasError("required")) {
+    if (this.formFieldInputs.control.touched && this.formFieldInputs.control.errors && !this.formFieldInputs.control.valid) {
+      if (this.formFieldInputs.control.hasError("required")) {
         return "The field is required";
       }
 
-      if (this.control.hasError("email")) {
+      if (this.formFieldInputs.control.hasError("email")) {
         return "Please type a valid email address";
       }
 
-      if (this.control.hasError("minlength")) {
-        return `Minimum of ${this.control.errors['minlength'].requiredLength} characters is required`;
+      if (this.formFieldInputs.control.hasError("minlength")) {
+        return `Minimum of ${this.formFieldInputs.control.errors['minlength'].requiredLength} characters is required`;
       }
 
-      if (this.control.hasError("maxlength")) {
-        return `Max of ${this.control.errors['maxlength'].requiredLength} characters is required`;
+      if (this.formFieldInputs.control.hasError("maxlength")) {
+        return `Max of ${this.formFieldInputs.control.errors['maxlength'].requiredLength} characters is required`;
       }
     }
 

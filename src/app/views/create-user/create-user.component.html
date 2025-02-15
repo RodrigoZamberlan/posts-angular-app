@@ -5,12 +5,13 @@
             <p>Please fill the form with your user info</p>
 
             <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
-                <app-form-field [control]="userForm.controls['fullname']" label="Fullname" name="fullname" type="text" placeholder="Type here your full name"/>
-                <app-form-field [control]="userForm.controls['email']" label="E-mail" name="email" type="text" placeholder="Type here best e-mail address"/>
-                <app-form-field [control]="userForm.controls['password']" label="Password" name="password" type="password" placeholder="Type here a strong password"/>
-
+                @for (field of formFields; track field.name) {
+                    <app-form-field [formFieldInputs]="field"/>
+                }
                 <button type="submit" [disabled]="!userForm.valid">Create</button>
             </form>
+
+            <p>Already have an account? <a class="text-with-link" routerLink="/login">Sign In</a></p>
         </div>
     </div>
 </section>
