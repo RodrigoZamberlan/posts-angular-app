@@ -1,0 +1,4 @@
+<div class="field">
+    <label [for]="fieldInputs.name">E-mail</label>
+    <input (change)="onInputChange($event)" [name]="fieldInputs.name" [type]="fieldInputs.type || 'text'" [placeholder]="fieldInputs.placeholder || ''" [required]="fieldInputs.required">
+</div>

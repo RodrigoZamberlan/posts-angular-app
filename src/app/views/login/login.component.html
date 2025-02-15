@@ -1,1 +1,16 @@
-<p>login works!</p>
+<section id="login-page">
+    <div class="container">
+        <div class="row">
+            <h1>Sign In</h1>
+            <p>Please type your credentials to login</p>
+
+            <div class="wrapper-login-fields">
+                @for (field of fields; track $index) {
+                    <app-field [fieldInputs]="field" />
+                }
+
+                <button type="button" (click)="onSubmit()">Submit</button>
+            </div>
+        </div>
+    </div>
+</section>
