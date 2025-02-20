@@ -1,17 +1,15 @@
 <section id="create-user">
     <div class="container">
-        <div class="row">
-            <h1>Create a new user</h1>
-            <p>Please fill the form with your user info</p>
+        <h1 class="title">Create a new user</h1>
+        <p class="description">Please fill the form with your user info</p>
 
-            <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
-                @for (field of formFields; track field.name) {
-                    <app-form-field [formFieldInputs]="field"/>
-                }
-                <button type="submit" [disabled]="!userForm.valid">Create</button>
-            </form>
+        <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+            @for (field of formFields; track field.name) {
+                <app-form-field [formFieldInputs]="field"/>
+            }
+            <button id="btn-submit" class="btn-primary" type="submit" [disabled]="!userForm.valid">Create</button>
+        </form>
 
-            <p>Already have an account? <a class="text-with-link" routerLink="/login">Sign In</a></p>
-        </div>
+        <p class="text">Already have an account? <a class="text-with-link" routerLink="/login">Sign In</a></p>
     </div>
 </section>

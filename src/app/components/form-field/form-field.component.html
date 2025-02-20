@@ -1,5 +1,5 @@
 <div class="field">
     <label [for]="formFieldInputs.name">{{ formFieldInputs.label }}</label>
-    <input [attr.name]="formFieldInputs.name" [formControl]="formFieldInputs.control" [type]="formFieldInputs.type || 'text'" [placeholder]="formFieldInputs.placeholder">
+    <input [class]="errorMessage && 'with-error'" [attr.name]="formFieldInputs.name" [formControl]="formFieldInputs.control" [type]="formFieldInputs.type || 'text'" [placeholder]="formFieldInputs.placeholder">
     <p class="error-message" *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
 </div>

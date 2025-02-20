@@ -1,0 +1,14 @@
+<section id="home-page">
+    <div class="container">
+        <div>
+            <p *ngIf="isLoading">Loading...</p>
+           
+                @for (user of users; track user.id) {
+                    <p>{{ user.firstname }}</p>
+                }
+           
+                <p *ngIf="errorMessage !== null">{{ errorMessage }}</p>
+            
+        </div>
+    </div>
+</section>

@@ -3,6 +3,8 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { FormFieldComponent } from "../../components/form-field/form-field.component";
 import { IFormFieldInputs } from '../../shared/models/form-field.interface';
 import { RouterLink } from '@angular/router';
+import { UserService } from '../../services/user.service';
+import { IUser } from '../../shared/models/user.interface';
 
 @Component({
   selector: 'app-create-user',
@@ -11,19 +13,41 @@ import { RouterLink } from '@angular/router';
   styleUrl: './create-user.component.scss'
 })
 export class CreateUserComponent {
+
+  constructor(private userService: UserService) {}
+
+  isLoading: boolean = false;
+  errorMessage: string | null = null;
+
   userForm = new FormGroup({
-    fullname: new FormControl<string>('', [Validators.minLength(3), Validators.maxLength(30), Validators.required]),
+    firstname: new FormControl<string>('', [Validators.minLength(3), Validators.maxLength(30), Validators.required]),
+    lastname: new FormControl<string>('', [Validators.minLength(3), Validators.maxLength(30), Validators.required]),
     email: new FormControl<string>('', [Validators.email, Validators.maxLength(30), Validators.required]),
-    password: new FormControl<string>('', [Validators.minLength(8), Validators.required])
+    role: new FormControl<'admin' | 'regular'>('regular'),
+    password: new FormControl<string>('', [Validators.minLength(8), Validators.required]),
+    isActive: new FormControl<boolean>(true, [Validators.required]),
   });
 
   formFields: IFormFieldInputs[] = [
-    {label: 'Fullname', name: 'fullname', placeholder: 'Type here your full name', control: this.userForm.controls['fullname'], required: true},
+    {label: 'First name', name: 'firstname', placeholder: 'Type here your first name', control: this.userForm.controls['firstname'], required: true},
+    {label: 'Last name', name: 'lastname', placeholder: 'Type here your last name', control: this.userForm.controls['lastname'], required: true},
     {label: 'E-mail', name: 'email', placeholder: 'Type here your best e-mail address', control: this.userForm.controls['email'], required: true},
-    {label: 'Fullname', name: 'password', placeholder: 'Type here a strong password', control: this.userForm.controls['password'], type: 'password', required: true}
+    {label: 'Password', name: 'password', placeholder: 'Type here a strong password', control: this.userForm.controls['password'], type: 'password', required: true}
   ]
 
   onSubmit() {
-    console.log(this.userForm.value);
+    this.isLoading = true;
+    const newUser: IUser = this.userForm.value as IUser;
+    this.userService.createUser(newUser).subscribe({ 
+      'next': () => {
+        console.log('user has been created');
+      },
+      'error': (error: string) => {
+        this.errorMessage = error;
+      },
+      'complete': () => {
+        this.isLoading = false;
+      }
+    });
   }
 }
