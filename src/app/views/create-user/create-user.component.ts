@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { FormFieldComponent } from "../../components/form-field/form-field.component";
 import { IFormFieldInputs } from '../../shared/models/form-field.interface';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { UserService } from '../../services/user.service';
 import { IUser } from '../../shared/models/user.interface';
 
@@ -14,7 +14,8 @@ import { IUser } from '../../shared/models/user.interface';
 })
 export class CreateUserComponent {
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService, private router: Router) {}
+
 
   isLoading: boolean = false;
   errorMessage: string | null = null;
@@ -64,8 +65,9 @@ export class CreateUserComponent {
     this.isLoading = true;
     const newUser: IUser = this.userForm.value as IUser;
     this.userService.createUser(newUser).subscribe({ 
-      'next': () => {
-        console.log('user has been created');
+      'next': (response) => {
+        if (response.message === "User registered successfully")
+        this.router.navigate(['/login']);
       },
       'error': (error: string) => {
         this.errorMessage = error;

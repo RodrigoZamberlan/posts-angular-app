@@ -3,6 +3,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { ILoginRequest, UserService } from '../../services/user.service';
 import { IFormFieldInputs } from '../../shared/models/form-field.interface';
 import { FormFieldComponent } from '../../components/form-field/form-field.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,7 @@ import { FormFieldComponent } from '../../components/form-field/form-field.compo
 })
 export class LoginComponent {
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService, private router: Router) {}
 
   isLoading: boolean = false;
   errorMessage: string | null = null;
@@ -52,15 +53,20 @@ export class LoginComponent {
     const loginRequest: ILoginRequest = {email: email, password: password};
 
     if (this.loginForm.valid) {
+      this.isLoading = true;
       this.userService.authenticate(loginRequest).subscribe({
         next: (response) => {
-          console.log(response);
+          if (response.message === 'Login successful') {
+            this.router.navigate(['/home'])
+          }
         },
         error: (error) => {
-          console.log(error);
+          if (error.status === 401) {
+          this.errorMessage = 'Wrong e-mail or password, please try again!';
+          }
         },
         complete: () => {
-          console.log('authentication is complete');
+          this.isLoading = false;
         }
       })
     }

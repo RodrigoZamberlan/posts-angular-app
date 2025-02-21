@@ -20,15 +20,15 @@ export class UserService {
     return this.http.get<IUser[] | string>(this.apiUrl);
   }
 
-  createUser(user: IUser): Observable<IUser> {
-    return this.http.post<IUser>(`${this.apiUrl}/register`, user);
+  createUser(user: IUser): Observable<{message: string}> {
+    return this.http.post<{message: string}>(`${this.apiUrl}/register`, user);
   }
 
   deleteUser(id: string): Observable<string> {
     return this.http.get<string>(`${this.apiUrl}/delete`);
   }
 
-  authenticate(loginRequest: ILoginRequest): Observable<string> {
-    return this.http.post<string>(`${this.apiUrl}/auth`, loginRequest);
+  authenticate(loginRequest: ILoginRequest): Observable<{message: string}> {
+    return this.http.post<{message: string}>(`${this.apiUrl}/auth`, loginRequest);
   }
 }
