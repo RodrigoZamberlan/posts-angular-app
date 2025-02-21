@@ -4,13 +4,13 @@
             <h1>Sign In</h1>
             <p>Please type your credentials to login</p>
 
-            <div class="wrapper-login-fields">
+            <form (ngSubmit)="onSubmit()" [formGroup]="loginForm">
                 @for (field of fields; track $index) {
-                    <app-field [fieldInputs]="field" />
+                    <app-form-field [formFieldInputs]="field" />
                 }
 
-                <button type="button" (click)="onSubmit()">Submit</button>
-            </div>
+                <button type="submit">Submit</button>
+            </form>
         </div>
     </div>
 </section>

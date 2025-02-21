@@ -33,6 +33,5 @@ export class HomeComponent implements OnInit {
   
   ngOnInit(): void {
       this.fetchUsers();
-      console.log(this.users);
   }
 }

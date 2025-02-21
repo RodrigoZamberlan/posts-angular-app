@@ -13,6 +13,6 @@ export class FieldComponent {
   @Output() value = EventEmitter<string>;
 
   onInputChange(event: Event) {
-    console.log(event);
+    
   }
 }

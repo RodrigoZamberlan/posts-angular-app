@@ -1,7 +1,12 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IUser } from '../shared/models/user.interface';
+
+export interface ILoginRequest {
+  email: IUser['email'],
+  password: IUser['password']
+}
 
 @Injectable({
   providedIn: 'root'
@@ -15,19 +20,15 @@ export class UserService {
     return this.http.get<IUser[] | string>(this.apiUrl);
   }
 
-  getUser(id: string): Observable<any> {
-    return this.http.get(`${this.apiUrl}/${id}`);
-  }
-
   createUser(user: IUser): Observable<IUser> {
     return this.http.post<IUser>(`${this.apiUrl}/register`, user);
   }
 
-  deleteUser(id: string): Observable<any> {
-    return this.http.get(`${this.apiUrl}/delete`);
+  deleteUser(id: string): Observable<string> {
+    return this.http.get<string>(`${this.apiUrl}/delete`);
   }
 
-  authenticate(email: string, password: string): Observable<any> {
-    return this.http.get(`${this.apiUrl}/auth`);
+  authenticate(loginRequest: ILoginRequest): Observable<string> {
+    return this.http.post<string>(`${this.apiUrl}/auth`, loginRequest);
   }
 }

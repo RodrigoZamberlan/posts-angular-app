@@ -29,10 +29,35 @@ export class CreateUserComponent {
   });
 
   formFields: IFormFieldInputs[] = [
-    {label: 'First name', name: 'firstname', placeholder: 'Type here your first name', control: this.userForm.controls['firstname'], required: true},
-    {label: 'Last name', name: 'lastname', placeholder: 'Type here your last name', control: this.userForm.controls['lastname'], required: true},
-    {label: 'E-mail', name: 'email', placeholder: 'Type here your best e-mail address', control: this.userForm.controls['email'], required: true},
-    {label: 'Password', name: 'password', placeholder: 'Type here a strong password', control: this.userForm.controls['password'], type: 'password', required: true}
+    {
+      label: 'First name',
+      name: 'firstname', 
+      placeholder: 'Type here your first name', 
+      control: this.userForm.controls['firstname'], 
+      required: true
+    },
+    {
+      label: 'Last name', 
+      name: 'lastname', 
+      placeholder: 'Type here your last name', 
+      control: this.userForm.controls['lastname'], 
+      required: true
+    },
+    {
+      label: 'E-mail', 
+      name: 'email', 
+      placeholder: 'Type here your best e-mail address', 
+      control: this.userForm.controls['email'], 
+      required: true
+    },
+    {
+      label: 'Password', 
+      name: 'password', 
+      placeholder: 'Type here a strong password', 
+      control: this.userForm.controls['password'], 
+      type: 'password', 
+      required: true
+    }
   ]
 
   onSubmit() {
