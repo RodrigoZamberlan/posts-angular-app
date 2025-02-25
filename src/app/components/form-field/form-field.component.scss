@@ -1,30 +1,26 @@
 .field {
     position: relative;
-    margin-bottom: 16px;
-    padding-top: .48rem;
-    padding-bottom: 1.2rem;
+    margin-bottom: 30px;
 
     label {
-        position: absolute;
-        top: 0;
-        left: 1rem;
-        font-size: .8rem;
-        background-color: black;
-        padding: 0 3px;
+        display: block;
+        font-weight: 600;
+        padding-bottom: 10px;
     }
 
     input {
-        height: 2.7rem;
-        padding: 0 .6rem;
-        background-color: transparent;
-        border: 1px solid white;
-        border-radius: .4rem;
+        font-family: "Inter";
+        height: 65px;
+        padding: 0 40px;
+        background-color: #33394F;
+        border-radius: 8px;
+        border: none;
         width: 100%;
         box-sizing: border-box;
-        color: white;
+        color: #fff;
 
         &.with-error {
-            border: 1px solid tomato;
+            border: 1px solid #FC728B;
         }
 
         &.success {
@@ -35,9 +31,9 @@
 
 .error-message {
     position: absolute;
-    bottom: 0;
-    left: 1rem;
-    color: tomato;
+    bottom: -20px;
+    left: 8px;
+    color: #FC728B;
     margin: 0;
     font-size: .8rem;
 }

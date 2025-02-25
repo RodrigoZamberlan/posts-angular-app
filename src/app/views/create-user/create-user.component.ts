@@ -8,6 +8,7 @@ import { IUser } from '../../shared/models/user.interface';
 
 @Component({
   selector: 'app-create-user',
+  standalone: true,
   imports: [ReactiveFormsModule, FormFieldComponent, RouterLink],
   templateUrl: './create-user.component.html',
   styleUrl: './create-user.component.scss'

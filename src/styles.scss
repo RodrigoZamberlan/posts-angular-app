@@ -1,31 +1,49 @@
+$backgroundColor: #202433;
+$fontFamily: "Inter", serif;
+$textColor: #fff;
+$secondaryTextOpacity: .6; 
+$inputBackgroundColor: #33394F;
+$btnBackgroundColor: #FC728B;
+$btnColor: $backgroundColor;
+
 .text-with-link {
+    color: $btnBackgroundColor;
     cursor: pointer;
     font-weight: bold;
+    text-decoration: none;
+    transition: all ease .5s;
 
     &:hover {
-        text-decoration: underline;
+        color: #eb8598;
     }
 }
 
 body {
-    background-color: black;
-    color: white;
-    font-family: Arial, Helvetica, sans-serif;
+    background-color: $backgroundColor;
+    color: $textColor;
+    font-family: $fontFamily;
 }
 
 h1,h2,h3,h4,p,a,span,div {
+    font-family: $fontFamily;
     margin: 0;
     padding: 0;
 }
 
 .btn-primary {
-    background-color: white;
-    color: black;
-    border: 1px solid white;
-    height: 40px;
+    background-color: $btnBackgroundColor;
+    border: none;
+    color: $btnColor;
+    height: 70px;
     padding: 0 1.4rem;
     font-size: 1rem;
     font-weight: bold;
     border-radius: .4rem;
     cursor: pointer;
+    width: 100%;
+    transition: all ease .5s;
+
+    &:hover {
+        background-color: #eb8598;
+    }
 }
